@@ -1,0 +1,15 @@
+{
+	"email": "mcfly@hillvalley.edu",
+	"phoneNumber": "123456"
+}
+
+{
+    "a": {              
+        "phoneNumber"     :     "123456",
+        "email"            :    "lorraine@hillvalley.edu"
+    },
+    "b": {                  
+        "phoneNumber":          "123456",
+        "email":                "mcfly@hillvalley.edu"
+    }
+}

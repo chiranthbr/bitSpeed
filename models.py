@@ -3,6 +3,9 @@ from sqlalchemy.sql import func
 from database import Base
 import enum
 
+from pydantic import BaseModel
+from typing import List
+
 class LinkPrecedence(str, enum.Enum):
     primary = "primary"
     secondary = "secondary"
@@ -18,3 +21,20 @@ class Contact(Base):
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
     updatedAt = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     deletedAt = Column(DateTime(timezone=True), nullable=True)
+
+class IdentifyRequest(BaseModel):
+    email: str = ""
+    phoneNumber: str = ""
+
+class InnerResponse(BaseModel):
+    primaryContactId: int
+    emails: List[str]
+    phoneNumbers: List[str]
+    secondaryContactIds: List[int]
+
+class ContactResponse(BaseModel):
+    contact: InnerResponse
+
+class TestInsert(BaseModel):
+    email: str
+    phoneNumber: str
