@@ -33,10 +33,6 @@ def update_contact(db: Session, id: int, linked_id: int, linkedPrecedence: str):
     db.refresh(data)
 
 def truncate():
-    try:
-        with database.engine.connect() as connection:
-            connection.execut1e(text(f"TRUNCATE TABLE Contact;").execution_options(autocommit = True))
-            return "Truncated!"
-    except Exception as e:
-        return e
-    
+    with database.engine.connect() as connection:
+        connection.execute(text(f"TRUNCATE TABLE Contact;").execution_options(autocommit = True))
+        return "Truncated!"
